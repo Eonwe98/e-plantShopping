@@ -46,12 +46,16 @@ body {
     width: 100vw;
     align-items: center;
     justify-content: center;
+
+    /* Added text alignment and background color*/
+    text-align: center;
+    background-color: rgb(16, 146, 44);
 }
 .product-list {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
-    /* background-color: pink; */
+    background-color: rgb(16, 146, 44); /*Readded background color*/
     /* justify-content: space-between; */
     padding: 20px;
     width: 100%;
@@ -72,6 +76,11 @@ body {
     position: relative;
     
     gap: 20px;
+    /* Added image size limitation to keep img in frame*/
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
 }
 
 /* Pseudo-classes - Hover effect on product button */
