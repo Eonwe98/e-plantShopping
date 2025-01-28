@@ -238,25 +238,25 @@ function ProductList() {
    const handleCartClick = (e) => {
     e.preventDefault();
     setShowCart(true); // Set showCart to true when cart icon is clicked
-};
-const handlePlantsClick = (e) => {
-    e.preventDefault();
-    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
-    setShowCart(false); // Hide the cart when navigating to About Us
-};
+    };
+    const handlePlantsClick = (e) => {
+     e.preventDefault();
+     setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
+     setShowCart(false); // Hide the cart when navigating to About Us
+    };
 
    const handleContinueShopping = (e) => {
     e.preventDefault();
     setShowCart(false);
-  };
+    };
 
   const handleAddToCart = (product) => {
     dispatch(addItem(product));
     setAddedToCart((prevState) => ({
-       ...prevState,
-       [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-     }));
-  };
+     ...prevState,
+     [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+    }));
+    };
 
     return (
         <div>
@@ -286,14 +286,14 @@ const handlePlantsClick = (e) => {
                     <div className="product-list">
                         {category.plants.map((plant, plantIndex) => (
                             <div className="product-card" key={plantIndex}>
-                                <img className="product-tmg" src={plant.image} alt={plant.name} />
-                                <div class="product-title">{plant.name}</div>
-                                <b><div class="product-details">{plant.description}</div></b>
-                                <footer><div class="product-cost">{plant.cost}</div></footer>
+                                <img className="product-image" src={plant.image} alt={plant.name} />
+                                <div className="product-title">{plant.name}</div>
+                                <b><div className="product-details">{plant.description}</div></b>
+                                <footer><div className="product-cost">{plant.cost}</div></footer>
                                 <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
                             </div>
                         ))}
-                    </div>
+                    </div> 
                 </div>
         ))}
         </div>
