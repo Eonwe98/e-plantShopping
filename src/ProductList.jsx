@@ -242,6 +242,7 @@ function ProductList() {
     e.preventDefault();
     setShowCart(true); // Set showCart to true when cart icon is clicked
     };
+
     const handlePlantsClick = (e) => {
      e.preventDefault();
      setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
@@ -257,7 +258,7 @@ function ProductList() {
     
   const handleAddToCart = (product) => {
     console.log("Test AddToCart: ", product);
-    dispatch(addItem(product));
+    dispatch({type:'addItem'},product);
     setAddedToCart((prevState) => ({
         ...prevState,
         [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
