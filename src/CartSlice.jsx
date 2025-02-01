@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 export const CartSlice = createSlice({
   name: 'cart',
   initialState: {
-    items: [], // Initialize items as an empty array
+    items: [] = new Array() // Initialize items as an empty array
   },
-  reducers: { 
+  reducers: {
     addItem: (state, action) => {
-        console.log("Test 2");
+        console.log("Test addItem");
         const { name, image, cost } = action.payload;
         const existingItem = state.items.find(item => item.name === name);
         if (existingItem) {

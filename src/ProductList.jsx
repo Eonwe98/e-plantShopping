@@ -249,12 +249,14 @@ function ProductList() {
     };
 
    const handleContinueShopping = (e) => {
+    console.log("Test continueShopping 2");
     e.preventDefault();
+    setShowPlants(true);
     setShowCart(false);
     };
     
   const handleAddToCart = (product) => {
-    console.log("Test 1");
+    console.log("Test AddToCart: ", product);
     dispatch(addItem(product));
     setAddedToCart((prevState) => ({
         ...prevState,
