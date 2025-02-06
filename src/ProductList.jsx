@@ -7,7 +7,6 @@ import addItem from './CartSlice';
 function ProductList(props) {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart, setAddedToCart] = useState({});
     const [cart, setCart] = useState([]); // Store items in cart
     const dispatch = useDispatch(); // dispatch functioning
     const cartItems = useSelector(state => state.cart.items);
@@ -255,7 +254,6 @@ function ProductList(props) {
     };
 
    const handleContinueShopping = (e) => {
-    console.log("Test continueShopping 2");
     e.preventDefault();
     setShowCart(false);
     };
@@ -264,7 +262,7 @@ function ProductList(props) {
     console.log("Test AddToCart: ", product);
     dispatch({type: 'addItem'}, product);
     console.log(cartItems);
-    setAddedToCart((prevState) => ({
+    setCart((prevState) => ({
         ...prevState,
         [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
       }));
@@ -296,6 +294,7 @@ function ProductList(props) {
         </div>
         {!showCart? (
         <div className="product-grid">
+            <br></br>
             {plantsArray.map((category, index) => (
                 <div key={index}>
                     <h1><div>{category.category}</div></h1>
