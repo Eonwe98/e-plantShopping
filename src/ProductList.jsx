@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux'; // dispatch functioning
+import { useDispatch, useSelector } from 'react-redux'; // dispatch functioning
 import './ProductList.css'
 import CartItem from './CartItem';
 import addItem from './CartSlice';
 
-function ProductList() {
+function ProductList(props) {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
-
+    const [cart, setCart] = useState([]); // Store items in cart
     const dispatch = useDispatch(); // dispatch functioning
+    const cartItems = useSelector(state => state.cart.items);
+
+    useEffect(() => {
+
+    }, []);
 
     const plantsArray = [
         {
@@ -252,24 +257,28 @@ function ProductList() {
    const handleContinueShopping = (e) => {
     console.log("Test continueShopping 2");
     e.preventDefault();
-    setShowPlants(true);
     setShowCart(false);
     };
     
   const handleAddToCart = (product) => {
     console.log("Test AddToCart: ", product);
-    dispatch({type:'addItem'},product);
+    dispatch({type: 'addItem'}, product);
+    console.log(cartItems);
     setAddedToCart((prevState) => ({
         ...prevState,
         [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
       }));
     };
 
+    const alreadyInCart = (itemName) => {
+        return cartItems.some((item) => item.name === itemName);
+    }
+
     return (
         <div>
              <div className="navbar" style={styleObj}>
             <div className="tag">
-               <div className="luxury">
+               <div  style={{cursor:"pointer"}} onClick={props.toLanding} className="luxury">
                <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
                <a href="/" style={{textDecoration:'none'}}>
                         <div>
@@ -294,11 +303,11 @@ function ProductList() {
                         {category.plants.map((plant, plantIndex) => (
                         <div className="product-card" key={plantIndex}>
                             <img className="product-image" src={plant.image} alt={plant.name} />
-                            <div className="product-title">{plant.name}</div>
-                            <b className="product-descript">{plant.description}</b>
-                            <footer><div className="product-cost">{plant.cost}</div></footer>
+                            <h2>{plant.name}</h2>
+                            <b>{plant.description}</b>
+                            <p>{plant.cost}</p>
 
-                            <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                            <button  className="product-button" style={{backgroundColor:alreadyInCart(plant.name)?"gray":"#4CAF50"}} disabled={alreadyInCart(plant.name)? true:false} onClick={() => handleAddToCart({name: plant.name, cost: plant.cost, image: plant.image})}>Add to Cart</button>
                         </div>
                     ))}
                 </div> 
