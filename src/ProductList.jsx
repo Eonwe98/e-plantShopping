@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; // dispatch functioning
 import './ProductList.css'
 import CartItem from './CartItem';
-import addItem from './CartSlice';
 
 function ProductList(props) {
     const [showCart, setShowCart] = useState(false); 
@@ -12,7 +11,7 @@ function ProductList(props) {
     const cartItems = useSelector(state => state.cart.items);
     
     useEffect(() => {
-        //dispatch({type: 'addItem', payload: product});
+
     }, []);
 
     const plantsArray = [
@@ -260,9 +259,7 @@ function ProductList(props) {
     
     const handleAddToCart = (product) => {
         console.log("Test AddToCart: ", product);
-        dispatch(addItem(product));
-        //dispatch({type: 'addItem', payload: product});
-        console.log(cartItems);
+        dispatch({type: 'cart/addItem', payload: product});
         setCart((prevState) => ({
             ...prevState,
             [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
