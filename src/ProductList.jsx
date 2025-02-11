@@ -10,9 +10,9 @@ function ProductList(props) {
     const [cart, setCart] = useState([]); // Store items in cart
     const dispatch = useDispatch(); // dispatch functioning
     const cartItems = useSelector(state => state.cart.items);
-
+    
     useEffect(() => {
-
+        //dispatch({type: 'addItem', payload: product});
     }, []);
 
     const plantsArray = [
@@ -253,19 +253,20 @@ function ProductList(props) {
      setShowCart(false); // Hide the cart when navigating to About Us
     };
 
-   const handleContinueShopping = (e) => {
-    e.preventDefault();
-    setShowCart(false);
+    const handleContinueShopping = (e) => {
+     e.preventDefault();
+     setShowCart(false);
     };
     
-  const handleAddToCart = (product) => {
-    console.log("Test AddToCart: ", product);
-    dispatch({type: 'addItem'}, product);
-    console.log(cartItems);
-    setCart((prevState) => ({
-        ...prevState,
-        [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-      }));
+    const handleAddToCart = (product) => {
+        console.log("Test AddToCart: ", product);
+        dispatch(addItem(product));
+        //dispatch({type: 'addItem', payload: product});
+        console.log(cartItems);
+        setCart((prevState) => ({
+            ...prevState,
+            [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+        }));
     };
 
     const alreadyInCart = (itemName) => {
