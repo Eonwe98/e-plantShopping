@@ -1,7 +1,7 @@
 {
-  "homepage": "https://eonwe98.github.io/e-plantShopping",
   "name": "shoppingcart",
   "private": false,
+  "homepage": "https://eonwe98.github.io/e-plantShopping",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
